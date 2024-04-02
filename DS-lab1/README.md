@@ -21,3 +21,7 @@ DS005.cpp 결과 <br>
 DS006.cpp 결과 <br>
 
 <img src="https://github.com/HyeokjuCHu/22100062_KHJ_DS/blob/master/DS-lab1/result/DS006.png?raw=true" height="150">
+
+DS007.cpp 결과 <br>
+
+<img src="https://github.com/HyeokjuCHu/22100062_KHJ_DS/blob/master/DS-lab1/result/DS007.png?raw=true" height="150">
