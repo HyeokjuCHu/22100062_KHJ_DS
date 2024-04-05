@@ -16,7 +16,7 @@ int main() {
         if (isalpha(c)) {
             c = tolower(c);
             alphabetCount[c - 'a']++;
-        }else{
+        }else if(c==' '){
             countB++;
         }
     }
