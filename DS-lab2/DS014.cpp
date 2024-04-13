@@ -4,7 +4,7 @@
 using namespace std;
 
 void ltrim(string& str) {
-    size_t start = 0;
+    int start = 0;
     while (start < str.length() && (str[start] == ' ' || str[start] == '\t')) {
         start++;
     }
@@ -17,7 +17,7 @@ void ltrim(string& str) {
 }
 
 void rtrim(string& str) {
-    size_t end = str.length() - 1;
+    int end = str.length() - 1;
     while (end >= 0 && (str[end] == ' ' || str[end] == '\t')) {
         end--;
     }
