@@ -45,6 +45,6 @@ int main()
     getline(cin, st.name);
 
     st.print();
-
+    delete[] st.score;
     return 0;
 }

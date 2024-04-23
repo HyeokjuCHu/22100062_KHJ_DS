@@ -28,7 +28,6 @@ struct Hi {
 
 int main() {
     Hi arr[2];
-
     
     for (int i = 0; i < 2; ++i) {
         cin >> arr[i].product >> arr[i].price >> arr[i].manuf;

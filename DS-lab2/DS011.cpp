@@ -29,6 +29,7 @@ int main(){
     cin>>a;
     int *x=new int[a];
     cout<<add(a,x)<<" "<<Max(a,x)<<endl;
+    delete[] x;
     return 0;
 }
 
