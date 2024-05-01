@@ -1,11 +1,14 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <string>
 
 using namespace std;
 
-struct Elem
+struct Student
 {
-    int value;
+    float gpa;
+    string name;
 };
 
 class MyStack
@@ -13,95 +16,104 @@ class MyStack
 private:
     int maxsize;
     int top;
-    Elem *list;
+    Student *list;
+    float maxGPA;
 
 public:
-    void initialize();
-    bool isEmpty();
-    bool isFull();
-    void push(const Elem &e);
-    Elem *pop();
     MyStack(int size = 10);
-    ~MyStack()
-    {
-        delete[] list;
-    };
+    ~MyStack();
+    void push(const Student &s);
+    Student pop();
     void print();
+    void processFile(const string &filename);
 };
 
 MyStack::MyStack(int size)
 {
     maxsize = size;
-    list = new Elem[size];
-    initialize();
-}
-
-void MyStack::initialize()
-{
+    list = new Student[size];
     top = 0;
+    maxGPA = 0.0f;
 }
 
-bool MyStack::isEmpty()
+MyStack::~MyStack()
 {
-    return (top == 0) ? true : false;
+    delete[] list;
 }
 
-bool MyStack::isFull()
+void MyStack::push(const Student &s)
 {
-    return (top == maxsize) ? true : false;
-}
-
-void MyStack::push(const Elem &e)
-{
-    if (isFull())
+    if (top >= maxsize)
     {
+        cerr << "Stack overflow" << endl;
         return;
     }
-    list[top++] = e;
+    // 스택에 새로운 학생을 추가합니다.
+    list[top++] = s;
+    // 새로운 학생의 GPA가 최고 GPA보다 높은 경우, 최고 GPA를 업데이트합니다.
+    if (s.gpa > maxGPA)
+    {
+        maxGPA = s.gpa;
+    }
 }
 
-Elem *MyStack::pop()
+Student MyStack::pop()
 {
-    if (isEmpty())
+    if (top <= 0)
     {
-        return nullptr;
+        cerr << "Stack underflow" << endl;
+        return Student{-1.0f, ""}; // Return a default Student
     }
-    return &list[--top];
+    return list[--top];
 }
 
 void MyStack::print()
 {
+    cout << "Top GPA: " << maxGPA << endl;
     for (int i = 0; i < top; i++)
     {
-        cout << list[i].value << endl;
+        if (list[i].gpa == maxGPA)
+        {
+            cout << list[i].name << endl;
+        }
     }
+}
+
+void MyStack::processFile(const string &filename)
+{
+    ifstream file(filename);
+    if (!file.is_open())
+    {
+        cerr << "Error opening file: " << filename << endl;
+        return;
+    }
+
+    string line;
+    while (getline(file, line))
+    {
+        float gpa;
+        string name;
+        istringstream iss(line);
+        // Extract GPA and name from the line
+        if (!(iss >> gpa >> name))
+        {
+            cerr << "Error reading line from file" << endl;
+            continue;
+        }
+        Student s = {gpa, name};
+        push(s);
+    }
+    file.close();
 }
 
 int main()
 {
-    Elem one;
-    Elem *p;
+    MyStack myStack;
 
-    int x;
-    cin >> x;
-    MyStack myStack(x);
-    int i=0;
-    string a;
-    while(i<x){
-        int x;
-        cin>>a;
-        if(a=="push"){
-            cin>>x;
-            one.value=x;
-            myStack.push(one);
-            i++;  
-        }else if(a=="pop"){
-            myStack.pop();
-        }
-    }
-    cin>>a;
-    if(a=="print"){
-        myStack.print();
-    }   
+    // Replace "GPA.txt" with your actual file name
+    myStack.processFile("GPA.txt");
+
+    myStack.print();
+
     return 0;
 }
