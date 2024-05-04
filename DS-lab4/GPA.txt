@@ -5,3 +5,5 @@
 3.8 Sally
 3.8 Mickey
 3.6 Peter
+3.9 Hyeokju
+4.1 Kwon
