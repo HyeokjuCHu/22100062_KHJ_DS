@@ -15,93 +15,117 @@ public:
     };
 };
 
-
-
-class LinkedListStack {
+class LinkedListStack
+{
 private:
-    Node* top;
+    Node *top;
 
 public:
     LinkedListStack() : top(nullptr) {}
 
-    ~LinkedListStack() {
-        while (!isEmpty()) {
+    ~LinkedListStack()
+    {
+        while (!isEmpty())
+        {
             pop();
         }
     }
 
-    bool isEmpty() {
+    bool isEmpty()
+    {
         return top == nullptr;
     }
 
-    void push(char data) {
-        Node* newNode = new Node(data);
-        if (isEmpty()) {
+    void push(char data)
+    {
+        Node *newNode = new Node(data);
+        if (isEmpty())
+        {
             top = newNode;
-        } else {
+        }
+        else
+        {
             newNode->next = top;
             top = newNode;
         }
     }
 
-    char pop() {
-        if (isEmpty()) {
-            cerr << "Stack is empty." << endl;
-            return '\0';
+    char pop()
+    {
+        if (isEmpty())
+        {
+            return;
         }
         char data = top->data;
-        Node* temp = top;
+        Node *temp = top;
         top = top->next;
         delete temp;
         return data;
     }
 
-    char peek() {
-        if (isEmpty()) {
-            cerr << "Stack is empty." << endl;
-            return '\0';
-        }
+    char peek()
+    {
+        if (isEmpty())
+    {
+        return -1;
+    }
         return top->data;
     }
 };
 
-string processInput(const string& input) {
+string processInput(const string &input)
+{
     LinkedListStack leftStack;
     LinkedListStack rightStack;
 
-    for (char ch : input) {
-        if (ch == '<') {
-            if (!leftStack.isEmpty()) {
+    for (char ch : input)
+    {
+        if (ch == '<')
+        {
+            if (!leftStack.isEmpty())
+            {
                 rightStack.push(leftStack.pop());
             }
-        } else if (ch == '>') {
-            if (!rightStack.isEmpty()) {
+        }
+        else if (ch == '>')
+        {
+            if (!rightStack.isEmpty())
+            {
                 leftStack.push(rightStack.pop());
             }
-        } else {
+        }
+        else
+        {
             leftStack.push(ch);
         }
     }
 
     string result;
-    while (!leftStack.isEmpty()) {
+    while (!leftStack.isEmpty())
+    {
         result = leftStack.pop() + result;
     }
-    while (!rightStack.isEmpty()) {
+    while (!rightStack.isEmpty())
+    {
         result += rightStack.pop();
     }
 
     return result;
 }
 
-int main() {
+int main()
+{
     string userInput;
-    while (true) {
+    while (true)
+    {
         getline(cin, userInput);
 
-        if (userInput == "q") {
+        if (userInput == "q")
+        {
             break;
-        } else {
+        }
+        else
+        {
             string resultString = processInput(userInput);
             cout << "=> " << resultString << endl;
         }

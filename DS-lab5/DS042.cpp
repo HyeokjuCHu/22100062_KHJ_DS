@@ -80,14 +80,7 @@ int main()
             exit(1);
         }
     }
-    if (operandCount > 1 || operatorCount >= operandCount)
-    {
-        cerr << "Too many operators" << endl;
-        exit(1);
-    }
-    else
-    {
-        if (!myStack.isEmpty())
+if (!myStack.isEmpty())
         {
             int finalResult = myStack.peek();
             myStack.pop();
@@ -98,7 +91,6 @@ int main()
             cerr << "Error: Invalid postfix expression\n";
             exit(1);
         }
-    }
-
-    return 0;
+        return 0;
 }
+        
