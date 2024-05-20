@@ -135,7 +135,7 @@ int main()
 {
     MyCircularQueue myQueue;
 
-    // Replace "GPA.txt" with your actual file name
+    
     myQueue.processFile("GPA.txt");
 
     myQueue.print();
