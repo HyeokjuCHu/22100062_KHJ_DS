@@ -1,20 +1,32 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 int main() {
-    int x[3], y[3];
-    int checkx, checky;
 
-    for (int i = 0; i < 3; ++i) {
-        cin >> x[i] >> y[i];
+    vector<int> hi;
+    int temp;
+
+    for(int i=0;i<5;i++){
+        int x;
+        cin>>x;
+        hi.push_back(x);
     }
 
-    // 차례로 XOR 연산을 수행하여 다른 값들을 찾음
-    checkx = x[0] ^ x[1] ^ x[2];
-    checky = y[0] ^ y[1] ^ y[2];
-
-    cout << checkx << " " << checky << endl;
+    for(int i=0;i<hi.size()-1;i++){
+        for(int j=i;j<hi.size();j++){
+            if(hi[i]>hi[j]){
+                temp=hi[i];
+                hi[i]=hi[j];
+                hi[j]=temp;
+            }
+        }
+    }
+    
+    for(int i=0;i<hi.size();i++){
+        cout<<hi[i]<<endl;
+    }
 
     return 0;
 }
