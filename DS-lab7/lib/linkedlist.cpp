@@ -26,7 +26,7 @@ void LinkList::enqueue(const int& e) {
 int LinkList::dequeue() {
     if (isEmpty()) {
         cout << "Link is Empty" << endl;
-        return -1; // 빈 값을 나타내는 -1 반환
+        return -1; // 혹은 예외를 던질 수 있습니다.
     } else if (front->link == nullptr) {
         int value = front->data;
         delete front;
@@ -44,7 +44,7 @@ int LinkList::dequeue() {
 int LinkList::Front() const {
     if (isEmpty()) {
         cout << "Link is Empty" << endl;
-        return -1; // 빈 값을 나타내는 -1 반환
+        return -1;
     }
     return front->data;
 }
@@ -52,7 +52,7 @@ int LinkList::Front() const {
 int LinkList::Rear() const {
     if (isEmpty()) {
         cout << "Link is Empty" << endl;
-        return -1; // 빈 값을 나타내는 -1 반환
+        return -1;
     }
     return rear->data;
 }
