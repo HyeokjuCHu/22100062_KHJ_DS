@@ -26,17 +26,15 @@ void LinkList::enqueue(const int& e) {
 int LinkList::dequeue() {
     if (isEmpty()) {
         cout << "Link is Empty" << endl;
-        return -1; // 혹은 예외를 던질 수 있습니다.
-    } else if (front->link == nullptr) {
-        int value = front->data;
-        delete front;
-        front = rear = nullptr;
-        return value;
+        return -1;
     } else {
         Node* ptr = front;
         front = front->link;
         int value = ptr->data;
         delete ptr;
+        if (front == nullptr) {
+            rear = nullptr;
+        }
         return value;
     }
 }
@@ -67,5 +65,5 @@ void LinkList::displayQueue() const {
         cout << current->data << " -> ";
         current = current->link;
     }
-    cout << endl;
+    cout << "NULL" << endl;
 }

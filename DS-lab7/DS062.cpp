@@ -21,10 +21,9 @@ int fibonacci(int n) {
         fibList.enqueue(result);
     }
 
-    for (int i = 1; i <= n; ++i) {
+    for (int i = 0; i <= n; ++i) {
         cout << i << "th: " << fibList.dequeue() << endl;
     }
-   
 
     return result;
 }
