@@ -11,19 +11,19 @@ EXEALL = $(EXE1) $(EXE2) $(EXE3)
 all: $(EXEALL)
 
 $(LIB_OBJ): $(LIB_SRC)
-   $(CC) -c $< -o $@ $(INCLUDEPATH)
+	$(CC) -c $< -o $@ $(INCLUDEPATH)
 
 $(EXE1): $(EXE1).cpp $(LIB_OBJ)
-   $(CC) -o $@ $^ $(INCLUDEPATH)
+	$(CC) -o $@ $^ $(INCLUDEPATH)
 
 $(EXE2): $(EXE2).cpp $(LIB_OBJ)
-   $(CC) -o $@ $^ $(INCLUDEPATH)
+	$(CC) -o $@ $^ $(INCLUDEPATH)
    
 $(EXE3): $(EXE3).cpp $(LIB_OBJ)
-   $(CC) -o $@ $^ $(INCLUDEPATH)
+	$(CC) -o $@ $^ $(INCLUDEPATH)
 
 clean:
-   del $(EXE1).exe
-   del $(EXE2).exe
-   del $(EXE3).exe
-   del $(LIB_OBJ)
+	del $(EXE1).exe
+	del $(EXE2).exe
+	del $(EXE3).exe
+	del $(LIB_OBJ)
