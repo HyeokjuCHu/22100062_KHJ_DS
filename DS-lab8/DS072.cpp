@@ -17,7 +17,7 @@ int main()
     {
         cout << "[" << y[i] << "] ";
     }
-    cout<<endl;
+    cout << endl;
 #endif
 
     for (int i = 0; i < x; i++)
