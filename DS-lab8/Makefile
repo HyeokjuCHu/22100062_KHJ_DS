@@ -6,7 +6,9 @@ EXE2 = DS072
 
 EXE3 = DS073
 
-EXEALL = $(EXE1) $(EXE2) $(EXE3)
+EXE4 = DS074
+
+EXEALL = $(EXE1) $(EXE2) $(EXE3) $(EXE4)
 
 all: $(EXEALL)
 
@@ -23,6 +25,10 @@ $(EXE3): $(EXE3).cpp
 	$(CC) -o $@ $^
 	$(CC) -o DS073_debug $^ -D_DEBUG
 
+$(EXE4): $(EXE4).cpp
+	$(CC) -o $@ $^
+	$(CC) -o DS074_debug $^ -D_DEBUG
+
 clean:
 	del $(EXE1).exe
 	del DS071_debug.exe
@@ -30,3 +36,5 @@ clean:
 	del DS072_debug.exe
 	del $(EXE3).exe
 	del DS073_debug.exe
+	del $(EXE4).exe
+	del DS074_debug.exe
