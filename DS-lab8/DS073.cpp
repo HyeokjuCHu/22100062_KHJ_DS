@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void asc_o(int *arr, int n)
+void asc_o(int arr[], int n)
 {
     cout << "=== ascending order ===" << endl;
 #ifdef _DEBUG
@@ -42,7 +42,7 @@ void asc_o(int *arr, int n)
 #endif
 }
 
-void des_o(int *arr, int n)
+void des_o(int arr[], int n)
 {
     cout << "=== descending order ===" << endl;
 #ifdef _DEBUG
@@ -85,22 +85,25 @@ int main()
 {
     int x;
     cin >> x;
-    int arr[x];
+    int y[x];
 
     for (int i = 0; i < x; i++)
     {
-        cin >> arr[i];
+        cin >> y[i];
     }
+    int z[x];
+    copy(y,y+x,z);
+    
 #ifndef _DEBUG
     for (int i = 0; i < x; i++)
     {
-        cout << "[" << arr[i] << "] ";
+        cout << "[" << y[i] << "] ";
     }
     cout << endl;
 #endif
 
-    asc_o(arr, x);
-    des_o(arr, x);
+    asc_o(y, x);
+    des_o(z, x);
 
     return 0;
 }
