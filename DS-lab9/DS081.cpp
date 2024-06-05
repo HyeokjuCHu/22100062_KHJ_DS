@@ -3,82 +3,72 @@
 
 using namespace std;
 
-struct node {
+struct Node {
     int data;
-    struct node *left;
-    struct node *right;
-    node(int value) : data(value), left(nullptr), right(nullptr) {}
+    Node* left;
+    Node* right;
+    Node(int value) : data(value), left(nullptr), right(nullptr) {}
 };
 
-class BinaryT {
-    node *root;
+class BinaryTree {
+    Node* root;
 
 public:
-    BinaryT();
+    BinaryTree() : root(nullptr) {}
     void insertLevelOrder(int arr[], int n);
-    void inorderTraversal(node *root);
+    void inorderTraversal(Node* node);
     void printInOrder();
-    node* getRoot();
+    Node* getRoot() { return root; }
 };
 
-BinaryT::BinaryT() {
-    root = nullptr;
-}
-
-void BinaryT::insertLevelOrder(int arr[], int n) {
+void BinaryTree::insertLevelOrder(int arr[], int n) {
     if (n == 0) return;
 
-    root = new node(arr[0]);
-    queue<node*> q;
+    root = new Node(arr[0]);
+    queue<Node*> q;
     q.push(root);
-    int i = 1;
 
-    while (!q.empty() && i < n) {
-        node* temp = q.front();
+    for (int i = 1; i < n;) {
+        Node* current = q.front();
         q.pop();
 
-        if (i < n && arr[i] != 0) {
-            temp->left = new node(arr[i]);
-            q.push(temp->left);
+        if (arr[i] != 0) {
+            current->left = new Node(arr[i]);
+            q.push(current->left);
         }
         i++;
 
         if (i < n && arr[i] != 0) {
-            temp->right = new node(arr[i]);
-            q.push(temp->right);
+            current->right = new Node(arr[i]);
+            q.push(current->right);
         }
         i++;
     }
 }
 
-void BinaryT::inorderTraversal(node* root) {
-    if (root == nullptr)
-        return;
+void BinaryTree::inorderTraversal(Node* node) {
+    if (!node) return;
 
-    inorderTraversal(root->left);
-    cout << root->data << " ";
-    inorderTraversal(root->right);
+    inorderTraversal(node->left);
+    cout << node->data << " ";
+    inorderTraversal(node->right);
 }
 
-void BinaryT::printInOrder() {
+void BinaryTree::printInOrder() {
     inorderTraversal(root);
     cout << endl;
 }
 
-node* BinaryT::getRoot() {
-    return root;
-}
-
 int main() {
-    BinaryT tree;
+    BinaryTree tree;
 
-    int x;
-    cin >> x;
-    int* arr = new int[x];
-    for (int i = 0; i < x; i++) {
+    int n;
+    cin >> n;
+    int* arr = new int[n];
+    for (int i = 0; i < n; ++i) {
         cin >> arr[i];
     }
-    tree.insertLevelOrder(arr, x);
+    tree.insertLevelOrder(arr, n);
     tree.printInOrder();
 
     delete[] arr;
