@@ -12,14 +12,14 @@ void printArray(int arr[], int n) {
 
 void selectionSort(int arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
-        int min = i;
+        int maxIdx = i;
         for (int j = i + 1; j < n; j++) {
-            if (arr[j] < arr[min]) {
-                min = j;
+            if (arr[j] > arr[maxIdx]) {
+                maxIdx = j;
             }
         }
-        if (min != i) {
-            swap(arr[i], arr[min]);
+        if (maxIdx != i) {
+            swap(arr[i], arr[maxIdx]);
         }
 #ifdef _DEBUG
         printArray(arr, n);
@@ -31,7 +31,7 @@ void insertionSort(int arr[], int n) {
     for (int i = 1; i < n; i++) {
         int key = arr[i];
         int j = i - 1;
-        while (j >= 0 && arr[j] > key) {
+        while (j >= 0 && arr[j] < key) {
             arr[j + 1] = arr[j];
             j--;
         }
@@ -75,7 +75,7 @@ void quickSort(int arr[], int left, int right) {
     int i = left - 1;
 
     for (int j = left; j < right; j++) {
-        if (arr[j] <= pivot) {
+        if (arr[j] >= pivot) {  // Change to >= for descending order
             i++;
             swap(arr[i], arr[j]);
         }
@@ -106,7 +106,7 @@ void mergeArrays(int arr[], int start, int middle, int end, int totalSize) {
     int i = 0, j = 0, k = start;
 
     while (i < leftPartSize && j < rightPartSize) {
-        if (leftArray[i] <= rightArray[j]) {
+        if (leftArray[i] >= rightArray[j]) {  // Change to >= for descending order
             arr[k++] = leftArray[i++];
         } else {
             arr[k++] = rightArray[j++];
