@@ -87,7 +87,7 @@ void quickSort(int arr[], int left, int right) {
 #endif
 
     quickSort(arr, left, i);
-    quickSort(arr, i + 2, right);
+    quickSort(arr, i + 1, right);
 }
 
 void mergeArrays(int arr[], int start, int middle, int end, int totalSize) {
