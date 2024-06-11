@@ -1,29 +1,83 @@
 #include <iostream>
-#include <queue>
+#include <string>
+#include <stack>
 
 using namespace std;
 
+class Node
+{
+public:
+    char data;
+    Node *next;
+    Node(char data)
+    {
+        this->data = data;
+        this->next = NULL;
+    };
+};
+
+
+string processInput(const string &input)
+{
+    stack<char> leftStack;
+    stack<char> rightStack;
+
+    for (char ch : input)
+    {
+        if (ch == '<')
+        {
+            if (!leftStack.empty())
+            {
+                rightStack.push(leftStack.top());
+                leftStack.pop();
+            }
+        }
+        else if (ch == '>')
+        {
+            if (!rightStack.empty())
+            {
+                leftStack.push(rightStack.top());
+                rightStack.pop();
+            }
+        }
+        else
+        {
+            leftStack.push(ch);
+        }
+    }
+
+    string result;
+    while (!leftStack.empty())
+    {
+        result = leftStack.top() + result;
+        leftStack.pop();
+    }
+    while (!rightStack.empty())
+    {
+        result += rightStack.top();
+        rightStack.pop();
+    }
+
+    return result;
+}
+
 int main()
 {
-    int arr[5]={1,5,4,3,6};
-    priority_queue<int> x;
+    string userInput;
+    while (true)
+    {
+        getline(cin, userInput);
 
-    cout<<"Init: ";
-    for(int i=0;i<5;i++){
-        cout<<arr[i]<<" ";
+        if (userInput == "q")
+        {
+            break;
+        }
+        else
+        {
+            string resultString = processInput(userInput);
+            cout << "=> " << resultString << endl;
+        }
     }
-    cout<<endl;
 
-    for(int i=4;i>=0;i--){
-        x.push(arr[i]);
-    }
-
-    cout<<"Priority Queue: ";
-    while(!x.empty()){
-        cout<<x.top()<<' ';
-        x.pop();
-    }
-    for(int i=0;i<5;i++){
-        cout<<endl;
-    }
+    return 0;
 }
