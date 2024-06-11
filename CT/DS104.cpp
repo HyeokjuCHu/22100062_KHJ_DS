@@ -1,5 +1,7 @@
 #include <iostream>
 
+using namespace std;
+
 struct Node
 {
     int data;
@@ -44,10 +46,10 @@ void printLinked()
     Node *temp = start;
     while (temp->next != nullptr)
     {
-        std::cout << temp->data << std::endl;
+        cout << temp->data << endl;
         temp = temp->next;
     }
-    std::cout << temp->data << std::endl;
+    cout << temp->data << endl;
 }
 
 void clearLinked()
@@ -67,10 +69,10 @@ void init(int size)
 {
     int number;
     clearLinked();
-    std::cout << "Enter numbers... ";
+    cout << "Enter numbers... ";
     for (int i = 0; i < size; i++)
     {
-        std::cin >> number;
+        cin >> number;
         addLast(number);
     }
 }
@@ -99,8 +101,8 @@ int main()
     int choice;
     while (true)
     {
-        std::cout << "\n How many numbers do you want to create (0:exit) ... ";
-        std::cin >> choice;
+        cout << "\n How many numbers do you want to create (0:exit) ... ";
+        cin >> choice;
         if (choice == 0)
             break;
         init(choice);
