@@ -8,6 +8,9 @@
         "xstring": "cpp",
         "xiosbase": "cpp",
         "iosfwd": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "algorithm": "cpp",
+        "deque": "cpp",
+        "vector": "cpp"
     }
 }
