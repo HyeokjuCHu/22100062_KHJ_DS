@@ -18,6 +18,8 @@ DS105.cpp 결과 <br>
 
 <img src="https://github.com/HyeokjuCHu/22100062_KHJ_DS/blob/master/CT/results/DS105.png?raw=true" height="300">
 
+/bDS106.cpp는 DS-lab9에서 DS084.cpp에 구현되어있습니다.
+
 DS107.cpp 결과 <br>
 
 <img src="https://github.com/HyeokjuCHu/22100062_KHJ_DS/blob/master/CT/results/DS107.png?raw=true" height="300">
